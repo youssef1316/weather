@@ -45,4 +45,23 @@ class AuthViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+ Future <bool> resetPassword (String email) async{
+    try {
+      _isLoading = true;
+      _errorMessage = null;
+      notifyListeners();
+      await _authService.sendPasswordResetEmail(email);
+      return true;
+    }
+    catch(e) {
+      _errorMessage = e.toString().replaceAll("Exeption: ", "");
+      return false;
+    }
+    finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+ }
+
 }

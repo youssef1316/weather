@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather/main.dart';
 import '../view/LoginScreen.dart';
 import '../view/SignupScreen.dart';
-import '../view/ResetpassScreen.dart';
+import '../view/ResetPassScreen.dart';
 import '../view/HomeScreen.dart';
 
 class AppRoutes {
@@ -15,7 +15,7 @@ class AppRoutes {
     return {
       login: (context) => LoginScreen(),
       signup: (context) => SignupScreen(),
-      //resetpass: (context) => ResetpassScreen(),
+      resetpass: (context) => ResetPassScreen(),
       home: (context) => HomeScreen()
     };
   }
