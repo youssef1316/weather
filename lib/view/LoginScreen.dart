@@ -50,6 +50,18 @@ class LoginScreen extends StatelessWidget {
               },
               child: const Text("Login"),
             ),
+            TextButton(
+                onPressed: (){
+                  Navigator.pushNamed(context, AppRoutes.resetpass);
+                },
+              child: const Text("Forgot password ?")
+            ),
+            TextButton(
+                onPressed: (){
+                  Navigator.pushNamed(context, AppRoutes.signup);
+                },
+                child: const Text("Sign Up")
+            )
           ],
         ),
       ),

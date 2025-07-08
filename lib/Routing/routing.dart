@@ -14,8 +14,8 @@ class AppRoutes {
   static Map<String, WidgetBuilder> configureRoutes() {
     return {
       login: (context) => LoginScreen(),
-      // signup: (context) => SignupScreen(),
-      // resetpass: (context) => ResetpassScreen(),
+      signup: (context) => SignupScreen(),
+      //resetpass: (context) => ResetpassScreen(),
       home: (context) => HomeScreen()
     };
   }

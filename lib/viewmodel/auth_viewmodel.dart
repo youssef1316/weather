@@ -29,4 +29,20 @@ class AuthViewModel extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
   }
+
+  Future<User?> signup(String email, String password) async{
+    try {
+      _isLoading = true;
+      _errorMessage = null;
+      notifyListeners();
+      final user = await _authService.signUpWithEmailAndPassword(email, password);
+      return user;
+    } catch (e){
+      _errorMessage = e.toString().replaceAll("Exeption: ", "");
+      return null;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 }
