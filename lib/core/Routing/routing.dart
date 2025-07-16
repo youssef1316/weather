@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:weather/main.dart';
-import '../view/LoginScreen.dart';
-import '../view/SignupScreen.dart';
-import '../view/ResetPassScreen.dart';
-import '../view/HomeScreen.dart';
+import '../../features/auth/view/LoginScreen.dart';
+import '../../features/auth/view/ResetpassScreen.dart';
+import '../../features/auth/view/SignupScreen.dart';
+import '../../features/weather/view/HomeScreen.dart';
+
 
 class AppRoutes {
   static const String login = '/login';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/Routing/routing.dart';
+import '../../../core/Routing/routing.dart';
 import '../viewmodel/auth_viewmodel.dart';
 
 class LoginScreen extends StatelessWidget {

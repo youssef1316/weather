@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'Routing/routing.dart';
-import '../viewmodel/auth_viewmodel.dart';
-import '../view/LoginScreen.dart';
+import 'package:weather/features/weather/viewmodel/weather_viewmodel.dart';
+import 'core/Routing/routing.dart';
+import 'features/auth/viewmodel/auth_viewmodel.dart';
 
 
 void main() async {
@@ -20,8 +20,15 @@ void main() async {
   );
   // test user email : youssefmt735@gmail.com
   //test user pass: Test123
-  runApp(const MyApp());
-
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => WeatherViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,9 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AuthViewModel>(
-      create: (_) => AuthViewModel(),
-      child: MaterialApp(
+    return MaterialApp(
         title: 'Weather app',
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.login,
@@ -39,7 +44,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-      ),
     );
   }
 }
