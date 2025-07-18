@@ -16,7 +16,7 @@ class LocationService {
     if(permission == LocationPermission.denied){
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied){
-        throw Exception('Location request is not denied');
+        throw Exception('Location request is denied');
       }
     }
     if(permission == LocationPermission.deniedForever){
@@ -25,7 +25,7 @@ class LocationService {
 
     //Get the current location
     return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.lowest
+      desiredAccuracy: LocationAccuracy.medium
     );
   }
 }
