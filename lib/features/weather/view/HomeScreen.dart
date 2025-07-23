@@ -4,6 +4,7 @@ import '../viewmodel/weather_viewmodel.dart';
 import '../widgets/calendar_widget.dart';
 import '../widgets/weather_detail_card.dart';
 import 'package:intl/intl.dart';
+import '../../training/viewmodel/training_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen>{
                 ),
               ],
             ),
-            body: Consumer<WeatherViewModel>(
-              builder: (context, weatherVM, _){
+            body: Consumer2<WeatherViewModel, Training>(
+              builder: (context, weatherVM,trainingVM, _){
                 if (weatherVM.isLoading){
                   return const Center(child: CircularProgressIndicator());
                 }
@@ -52,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen>{
                         (day) => isSameDate (day.date, selectedDate),
                     orElse: () => forecast[0]
                 );
+                WidgetsBinding.instance.addPostFrameCallback((_){
+                  trainingVM.FetchResponse(weatherVM.getFeatures(selectedDayWeather.date));
+                });
                 return Column(
                   children: [
                     CalendarWidget(
@@ -64,7 +68,10 @@ class _HomeScreenState extends State<HomeScreen>{
                         }
                     ),
                     Expanded(
-                        child: WeatherDetailCard(weather: selectedDayWeather)
+                        child: WeatherDetailCard(
+                          weather: selectedDayWeather,
+                          isSuitable: trainingVM.isSuitable,
+                        )
                     )
                   ],
                 );

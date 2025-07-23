@@ -20,13 +20,15 @@ class DailyData {
   final double minTemp;
   final String condition;
   final String icon;
+  final double humidity;
 
   DailyData({
     required this.date,
     required this.maxTemp,
     required this.minTemp,
     required this.condition,
-    required this.icon
+    required this.icon,
+    required this.humidity
 });
 
   factory DailyData.fromJson(Map<String, dynamic> json){
@@ -35,7 +37,8 @@ class DailyData {
         maxTemp: json['day']['maxtemp_c'].toDouble(),
         minTemp: json['day']['mintemp_c'].toDouble(),
         condition: json['day']['condition']['text'],
-        icon: "https:${json['day']['condition']['icon']}"
+        icon: "https:${json['day']['condition']['icon']}",
+        humidity: (json['day']['avghumidity'].toDouble()) ?? 0.0
     );
   }
 }

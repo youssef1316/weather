@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:weather/features/weather/viewmodel/weather_viewmodel.dart';
+import 'features/training/viewmodel/training_viewmodel.dart';
+import 'features/training/service/training_service.dart';
+import 'features/training/usecase/training_usecase.dart';
 import 'core/Routing/routing.dart';
 import 'features/auth/viewmodel/auth_viewmodel.dart';
 
@@ -25,6 +28,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => WeatherViewModel()),
+        ChangeNotifierProvider(create: (_) => Training(TrainingUsecase(TrainingService()))),
       ],
       child: const MyApp(),
     ),
