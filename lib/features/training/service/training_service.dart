@@ -15,6 +15,7 @@ class TrainingService {
       );
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
+        print(response.body);
         return TrainingModel.fromjson(json);
       } else {
         throw Exception("Error cant get prediction: ${response.body}");

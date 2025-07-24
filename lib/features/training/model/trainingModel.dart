@@ -1,17 +1,13 @@
 class TrainingModel{
-  final bool isSuitible;
+  final List<int> prediction;
 
-  TrainingModel({required this.isSuitible});
+  TrainingModel({required this.prediction});
 
   factory TrainingModel.fromjson(Map<String, dynamic> json) {
     return TrainingModel(
-        isSuitible: json['prediction'][0] == 1,
+        prediction: List<int>.from(json['prediction']),
     );
   }
-  
-  Map<String, dynamic> toJson(){
-    return {
-      'isSuitable' : isSuitible? 1 : 0
-    };
-  }
+
+  int get isSuitable => prediction.isNotEmpty ? prediction[0] : 0;
 }

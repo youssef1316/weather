@@ -7,12 +7,12 @@ class Training extends ChangeNotifier{
   final TrainingUsecase _trainingUsecase;
   Training(this._trainingUsecase);
 
-  bool ? _issuitable;
+  int ? _issuitable;
   String ? _errormessage ;
   bool _isloading = false;
   List<int>? _lastFeatures;
 
-  bool? get isSuitable => _issuitable;
+  int? get isSuitable => _issuitable;
   String? get errorMessage => _errormessage;
   bool get isLoading => _isloading;
 
@@ -28,7 +28,8 @@ class Training extends ChangeNotifier{
       print('selected features: ${features}');
       _lastFeatures = features;
       final result = await _trainingUsecase.execute(features);
-      _issuitable = result.isSuitible == 1;
+      _issuitable = result.isSuitable;
+      notifyListeners();
       print("response: ${result}");
     } catch (e) {
       _errormessage = 'Error: $e';
@@ -42,6 +43,7 @@ class Training extends ChangeNotifier{
   void Clear (){
     _issuitable = null;
     _errormessage = null;
+    _isloading = false;
     _lastFeatures = null;
     notifyListeners();
   }

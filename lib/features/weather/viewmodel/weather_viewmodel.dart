@@ -90,7 +90,7 @@ class WeatherViewModel extends ChangeNotifier {
       try {
         final features = getFeatures(day.date);
         final result = await _trainingService.getTraining(features);
-        _trainingPrediction[day.date] = result.isSuitible == 1;
+        _trainingPrediction[day.date] = result.isSuitable as bool;
       } catch (_) {
         _trainingPrediction[day.date] = false; // Fallback on error
       }
